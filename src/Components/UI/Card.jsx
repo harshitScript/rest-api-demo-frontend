@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Card1 = styled.div`
   box-shadow: 0 0 4px #ffb7;
@@ -9,4 +9,4 @@ export const Card1 = styled.div`
   &:hover {
     box-shadow: 0 0 4px gold;
   }
-`;
+`

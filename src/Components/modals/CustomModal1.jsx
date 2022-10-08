@@ -1,35 +1,35 @@
-import styled from "styled-components";
-import { ImCross } from "react-icons/im";
+import styled from 'styled-components'
+import { ImCross } from 'react-icons/im'
 
 const CustomModal1 = ({
   children = <></>,
-  title = "TITLE GOES HERE",
+  title = 'TITLE GOES HERE',
   onClose = () => {},
-  footer,
+  footer
 }) => {
   return (
     <>
       <Backdrop />
       <ModalDialog>
         <div
-          id="modal-title"
+          id='modal-title'
           className={`flex ${
-            title ? "justify-between" : "justify-end"
+            title ? 'justify-between' : 'justify-end'
           } align-center`}
         >
-          {title ? <span className="text-base font-bold">{title}</span> : <></>}
-          <ImCross onClick={onClose} className="cursor-pointer" />
+          {title ? <span className='text-base font-bold'>{title}</span> : <></>}
+          <ImCross onClick={onClose} className='cursor-pointer' />
         </div>
-        <div id="modal-body" className="py-2">
+        <div id='modal-body' className='py-2'>
           {children}
         </div>
-        {footer ? <div id="modal-footer">{footer}</div> : <></>}
+        {footer ? <div id='modal-footer'>{footer}</div> : <></>}
       </ModalDialog>
     </>
-  );
-};
+  )
+}
 
-export default CustomModal1;
+export default CustomModal1
 
 const Backdrop = styled.div`
   height: 100vh;
@@ -39,7 +39,7 @@ const Backdrop = styled.div`
   top: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.65);
-`;
+`
 
 const ModalDialog = styled.div`
   padding: 1rem;
@@ -55,4 +55,4 @@ const ModalDialog = styled.div`
   top: 20%;
   left: 25%;
   background: #000;
-`;
+`

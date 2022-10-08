@@ -1,6 +1,6 @@
-import Navbar from "../Components/Navbar";
-import styled from "styled-components";
-import { memo } from "react";
+import Navbar from '../Components/Navbar'
+import styled from 'styled-components'
+import { memo } from 'react'
 
 const PageLayout1 = ({ children }) => {
   return (
@@ -8,12 +8,12 @@ const PageLayout1 = ({ children }) => {
       <Navbar />
       <AppBody>{children}</AppBody>
     </>
-  );
-};
+  )
+}
 
 const AppBody = styled.div`
   min-height: calc(100vh - 70px);
   overflow: auto;
-`;
+`
 
-export default memo(PageLayout1);
+export default memo(PageLayout1)

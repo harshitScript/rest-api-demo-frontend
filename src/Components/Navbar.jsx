@@ -1,6 +1,6 @@
-import { memo } from "react";
-import styled from "styled-components";
-import { Button1 } from "./UI/Button";
+import { memo } from 'react'
+import styled from 'styled-components'
+import { Button1 } from './UI/Button'
 
 const Navbar = () => {
   return (
@@ -8,13 +8,13 @@ const Navbar = () => {
       <Button1>Message Node</Button1>
       <nav>
         <Ul>
-          <Li className="active">Post</Li>
+          <Li className='active'>Post</Li>
           <Li>Logout</Li>
         </Ul>
       </nav>
     </Header>
-  );
-};
+  )
+}
 
 const Header = styled.header`
   padding: 1rem;
@@ -24,7 +24,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+`
 
 const Ul = styled.ul`
   padding: 1rem;
@@ -33,7 +33,7 @@ const Ul = styled.ul`
   & .active {
     border-bottom: 3px solid gold;
   }
-`;
+`
 
 const Li = styled.li`
   font-size: 1rem;
@@ -45,6 +45,6 @@ const Li = styled.li`
   &:hover {
     border-bottom: 3px solid gold;
   }
-`;
+`
 
-export default memo(Navbar);
+export default memo(Navbar)

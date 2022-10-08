@@ -1,45 +1,47 @@
-import { useState } from "react";
-import CreatePostForm from "./CreatePostForm";
-import CustomModal1 from "./modals/CustomModal1";
-import { Button3 } from "./UI/Button";
+import { useState } from 'react'
+import CreatePostForm from './CreatePostForm'
+import CustomModal1 from './modals/CustomModal1'
+import { Button3 } from './UI/Button'
 
 const NewPostModal = () => {
   const [showModals, setShowModals] = useState({
     post: false,
     success: false,
-    error: false,
-  });
+    error: false
+  })
   return (
     <>
-      <div className="mt-5 w-full flex justify-center">
+      <div className='mt-5 w-full flex justify-center'>
         <Button3
           onClick={setShowModals.bind(null, (current) => ({
             ...current,
-            post: true,
+            post: true
           }))}
         >
           New Post
         </Button3>
       </div>
-      {showModals.post ? (
-        <CustomModal1
-          title="Add New Post"
-          onClose={setShowModals.bind(null, (current) => ({
-            ...current,
-            post: false,
-          }))}
-        >
-          <CreatePostForm
-            onCancel={setShowModals.bind(null, (current) => ({
+      {showModals.post
+        ? (
+          <CustomModal1
+            title='Add New Post'
+            onClose={setShowModals.bind(null, (current) => ({
               ...current,
-              post: false,
+              post: false
             }))}
-          />
-        </CustomModal1>
-      ) : (
-        <></>
-      )}
+          >
+            <CreatePostForm
+              onCancel={setShowModals.bind(null, (current) => ({
+                ...current,
+                post: false
+              }))}
+            />
+          </CustomModal1>
+          )
+        : (
+          <></>
+          )}
     </>
-  );
-};
-export default NewPostModal;
+  )
+}
+export default NewPostModal
