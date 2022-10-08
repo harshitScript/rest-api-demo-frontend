@@ -1,28 +1,29 @@
 import styled from "styled-components";
 import { ImCross } from "react-icons/im";
-import { Button2, Button3 } from "../UI/Button";
 
 const CustomModal1 = ({
   children = <></>,
   title = "TITLE GOES HERE",
   onClose = () => {},
-  onContinue = () => {},
+  footer,
 }) => {
   return (
     <>
       <Backdrop />
       <ModalDialog>
-        <div id="modal-title" className="flex justify-between align-center">
-          <span className="text-base font-bold">{title}</span>
+        <div
+          id="modal-title"
+          className={`flex ${
+            title ? "justify-between" : "justify-end"
+          } align-center`}
+        >
+          {title ? <span className="text-base font-bold">{title}</span> : <></>}
           <ImCross onClick={onClose} className="cursor-pointer" />
         </div>
         <div id="modal-body" className="py-2">
           {children}
         </div>
-        <div id="modal-footer" className="flex justify-end items-center">
-          <Button2 onClick={onClose}>Cancel</Button2>
-          <Button3 onClick={onContinue}>Continue</Button3>
-        </div>
+        {footer ? <div id="modal-footer">{footer}</div> : <></>}
       </ModalDialog>
     </>
   );

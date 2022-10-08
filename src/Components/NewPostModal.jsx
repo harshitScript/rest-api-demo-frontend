@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CreatePostForm from "./CreatePostForm";
 import CustomModal1 from "./modals/CustomModal1";
 import { Button3 } from "./UI/Button";
 
@@ -27,7 +28,14 @@ const NewPostModal = () => {
             ...current,
             post: false,
           }))}
-        />
+        >
+          <CreatePostForm
+            onCancel={setShowModals.bind(null, (current) => ({
+              ...current,
+              post: false,
+            }))}
+          />
+        </CustomModal1>
       ) : (
         <></>
       )}
