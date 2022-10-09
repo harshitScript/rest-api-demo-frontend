@@ -1,24 +1,29 @@
-import styled from 'styled-components'
+import { memo } from "react";
+import styled from "styled-components";
+import PostMenu from "./PostMenu";
 
 const Post = ({ title, description, image }) => {
   return (
     <PostOuter>
-      <div className='mb-3 flex gap-4'>
-        <UserImage src={image} alt='user' className='rounded-full' />
-        <section>
-          <UserName>USER-NAME</UserName>
-          <br />
-          <span>DD-MM-YYYY</span>
-        </section>
+      <div className="flex items-center justify-between">
+        <div className="mb-3 flex gap-4">
+          <UserImage src={image} alt="user" className="rounded-full" />
+          <section>
+            <UserName>USER-NAME</UserName>
+            <br />
+            <span>DD-MM-YYYY</span>
+          </section>
+        </div>
+        <PostMenu />
       </div>
       <PostTitle>{title}</PostTitle>
       <figure>
-        <img src={image} alt='title' height='200px' width='100%' />
+        <PostImg src={image} alt="title" height="200px" width="100%" />
         <figcaption>{description}</figcaption>
       </figure>
     </PostOuter>
-  )
-}
+  );
+};
 
 const PostOuter = styled.article`
   padding: 1rem;
@@ -27,23 +32,29 @@ const PostOuter = styled.article`
   box-shadow: 0 0 0 4px #ffb7;
   width: 80%;
   margin: 0.5rem auto;
-`
+`;
 
 const PostTitle = styled.span`
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
-`
+  margin: 5px 0;
+`;
 
 const UserImage = styled.img`
   height: 60px;
   width: 60px;
   outline: 1px solid #ffb7;
   outline-offset: 2px;
-`
+`;
 
 const UserName = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
-`
+`;
 
-export default Post
+const PostImg = styled.img`
+  box-shadow: 0 0 0 1px grey;
+  border-radius: 0.5rem;
+`;
+
+export default memo(Post);
