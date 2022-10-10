@@ -5,7 +5,8 @@ import { InputError1 } from "./UI/Errors";
 import axios from "axios";
 import { FaCircleNotch } from "react-icons/fa";
 import styled from "styled-components";
-import { fileObjectToLocalURL } from "../utils";
+import { fileObjectToLocalURL, getBase64 } from "../utils";
+import toast from "react-hot-toast";
 
 const CreatePostForm = ({ onCancel = () => {} }) => {
   const [loading, setLoading] = useState(false);
@@ -28,21 +29,44 @@ const CreatePostForm = ({ onCancel = () => {} }) => {
 
     setLoading(true);
 
-    axios
-      .post("http://localhost:4000/feed/add-post", {
-        title,
-        description,
-        /* image: image[0], */
-      })
-      .then((res) => {
-        reset();
-        setLoading(false);
-        console.log("The response =>", res);
-      })
-      .catch((error) => {
-        setLoading(false);
-        console.error(error);
-      });
+    getBase64(
+      image[0],
+      (imageBase64) => {
+        axios
+          .post("http://localhost:4000/feed/add-post", {
+            title,
+            description,
+            image: imageBase64,
+          })
+          .then(() => {
+            reset();
+            setLoading(false);
+            toast.success("Post created successfully!", {
+              position: "top-center",
+              style: {
+                backgroundColor: "#ffb7",
+              },
+            });
+          })
+          .catch(() => {
+            setLoading(false);
+            toast.error("Error occurred while creating post.", {
+              position: "top-center",
+              style: {
+                backgroundColor: "#ffb7",
+              },
+            });
+          });
+      },
+      () => {
+        toast.error("Error occurred while creating post.", {
+          position: "top-center",
+          style: {
+            backgroundColor: "#ffb7",
+          },
+        });
+      }
+    );
   };
 
   return (
