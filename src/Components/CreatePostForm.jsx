@@ -2,11 +2,11 @@ import { memo, useState } from "react";
 import { Button2, Button3 } from "./UI/Button";
 import { useForm } from "react-hook-form";
 import { InputError1 } from "./UI/Errors";
-import axios from "axios";
 import { FaCircleNotch } from "react-icons/fa";
 import styled from "styled-components";
 import { fileObjectToLocalURL, getBase64 } from "../utils";
 import toast from "react-hot-toast";
+import api from "../../api";
 
 const CreatePostForm = ({ onCancel = () => {} }) => {
   const [loading, setLoading] = useState(false);
@@ -32,7 +32,7 @@ const CreatePostForm = ({ onCancel = () => {} }) => {
     getBase64(
       image[0],
       (imageBase64) => {
-        axios
+        api
           .post("http://localhost:4000/feed/add-post", {
             title,
             description,
@@ -47,6 +47,7 @@ const CreatePostForm = ({ onCancel = () => {} }) => {
                 backgroundColor: "#ffb7",
               },
             });
+            onCancel();
           })
           .catch(() => {
             setLoading(false);
