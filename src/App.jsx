@@ -1,18 +1,20 @@
-import NewPostModal from "./Components/NewPostModal";
-import PostsFeed from "./Components/PostsFeed";
-import UpdateStatusForm from "./Components/UpdateStatusForm";
-import PageLayout1 from "./Layouts/PageLayout1";
-import { Toaster } from "react-hot-toast";
+import PostsPage from './Pages/PostsPage'
+import { Toaster } from 'react-hot-toast'
+import { Routes, Route, Navigate } from 'react-router-dom'
+import ViewPostPage from './Pages/ViewPostPage'
 
-function App() {
+function App () {
   return (
-    <PageLayout1>
-      <UpdateStatusForm />
-      <NewPostModal />
-      <PostsFeed />
+    <>
+      <Routes>
+        <Route path='/' element={<Navigate to='/posts' replace />} />
+        <Route path='/posts' element={<PostsPage />} />
+        <Route path='/view-post/:id' element={<ViewPostPage />} />
+      </Routes>
+
       <Toaster />
-    </PageLayout1>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

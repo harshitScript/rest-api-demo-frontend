@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import CreatePostForm from './CreatePostForm'
-import CustomModal1 from './modals/CustomModal1'
-import { Button3 } from './UI/Button'
+import CustomModal1 from '../../../Components/modals/CustomModal1'
+import { Button3 } from '../../../Components/UI/Button'
 
 const NewPostModal = () => {
   const [showModals, setShowModals] = useState({

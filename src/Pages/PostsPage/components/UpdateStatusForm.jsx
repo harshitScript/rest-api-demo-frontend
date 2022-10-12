@@ -1,7 +1,7 @@
 import { memo, useState } from 'react'
-import { Button2 } from './UI/Button'
-import { Card1 } from './UI/Card'
-import { InputError1 } from './UI/Errors'
+import { Button2 } from '../../../Components/UI/Button'
+import { Card1 } from '../../../Components/UI/Card'
+import { InputError1 } from '../../../Components/UI/Errors'
 
 const UpdateStatusForm = () => {
   const [statusValue, setStatusValue] = useState('I m a Super Hero Today.')

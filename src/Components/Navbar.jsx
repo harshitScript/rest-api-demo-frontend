@@ -1,14 +1,21 @@
 import { memo } from 'react'
+import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { Button1 } from './UI/Button'
 
 const Navbar = () => {
+  const activeLinkDecider = ({ isActive }) => (isActive ? 'active' : '')
+
   return (
     <Header>
       <Button1>Message Node</Button1>
       <nav>
         <Ul>
-          <Li className='active'>Post</Li>
+          <Li>
+            <NavLink to='/posts' className={activeLinkDecider}>
+              Posts
+            </NavLink>
+          </Li>
           <Li>Logout</Li>
         </Ul>
       </nav>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Button1 = styled.button`
   padding: 1rem;
@@ -11,7 +11,7 @@ export const Button1 = styled.button`
     border: 1px solid gold;
     color: gold;
   }
-`;
+`
 
 export const Button2 = styled.button`
   padding: 1rem;
@@ -22,7 +22,7 @@ export const Button2 = styled.button`
   &:hover {
     color: gold;
   }
-`;
+`
 
 export const Button3 = styled.button`
   padding: 0.5rem;
@@ -34,4 +34,4 @@ export const Button3 = styled.button`
   gap: 0.5rem;
   align-items: center;
   text-align: center;
-`;
+`
