@@ -8,6 +8,8 @@
     "start:UAT": "env-cmd -f ./.env.UAT vite",
     "start:PROD": "env-cmd -f ./.env.PROD vite",
     "build": "vite build",
+    "build:UAT": "env-cmd -f ./.env.UAT vite build",
+    "build:PROD": "env-cmd -f ./.env.PROD vite build",
     "preview": "vite preview"
   },
   "dependencies": {
