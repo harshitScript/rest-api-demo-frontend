@@ -4,12 +4,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite",
-    "start:UAT": "env-cmd -f ./.env.UAT vite",
-    "start:PROD": "env-cmd -f ./.env.PROD vite",
-    "build": "vite build",
-    "build:UAT": "env-cmd -f ./.env.UAT vite build",
-    "build:PROD": "env-cmd -f ./.env.PROD vite build",
+    "start": "env-cmd -f ./Environment/.env vite",
+    "start:UAT": "env-cmd -f ./Environment/.env.UAT vite",
+    "start:PROD": "env-cmd -f ./Environment/.env.PROD vite",
+    "build": "env-cmd -f ./Environment/.env vite build",
+    "build:UAT": "env-cmd -f ./Environment/.env.UAT vite build",
+    "build:PROD": "env-cmd -f ./Environment/.env.PROD vite build",
     "preview": "vite preview"
   },
   "dependencies": {

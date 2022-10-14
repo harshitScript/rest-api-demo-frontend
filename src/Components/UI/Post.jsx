@@ -35,7 +35,8 @@ const PostOuter = styled.article`
   min-height: 150px;
   box-shadow: 0 0 0 4px #ffb7;
   width: 80%;
-  margin: 0.5rem auto;
+  margin: 1rem auto;
+
 `
 
 const PostTitle = styled.span`
