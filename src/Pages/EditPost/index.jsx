@@ -42,7 +42,7 @@ const EditPostPage = ({ post }) => {
     formData.append("image", image[0]);
 
     api
-      .post(`feed/edit-post/${id}`, formData)
+      .put(`feed/edit-post/${id}`, formData)
       .then(() => {
         setLoading(false);
         toast.success("Post Update successfully!", {
