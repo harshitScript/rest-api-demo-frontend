@@ -1,5 +1,5 @@
 const PostPageCountProvider = ({ children }) => {
-  return children;
-};
+  return children
+}
 
-export default PostPageCountProvider;
+export default PostPageCountProvider

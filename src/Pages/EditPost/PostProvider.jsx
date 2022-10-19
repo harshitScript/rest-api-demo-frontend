@@ -1,30 +1,16 @@
-import { useState, cloneElement, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import api from "../../../api";
-import toast from "react-hot-toast";
+import { cloneElement } from 'react'
+import { useParams } from 'react-router-dom'
+import { useGetSinglePostQuery } from '../../store/feedApi'
 
 const PostProvider = ({ children }) => {
-  const [post, setPost] = useState(null);
+  const { id } = useParams()
 
-  const { id } = useParams();
-
-  useEffect(() => {
-    api
-      .get(`/feed/post/${id}`)
-      .then((res) => {
-        setPost(res.data);
-      })
-      .catch(() => {
-        toast.error("Error Occurred while fetching post.", {
-          position: "top-center",
-        });
-      });
-  }, []);
+  const { data: post } = useGetSinglePostQuery({ id })
 
   if (post) {
-    return cloneElement(children, { post });
+    return cloneElement(children, { post })
   }
-  return <></>;
-};
+  return <></>
+}
 
-export default PostProvider;
+export default PostProvider

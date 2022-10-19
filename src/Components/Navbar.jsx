@@ -1,10 +1,10 @@
-import { memo } from "react";
-import { NavLink } from "react-router-dom";
-import styled from "styled-components";
-import { Button1 } from "./UI/Button";
+import { memo } from 'react'
+import { NavLink } from 'react-router-dom'
+import styled from 'styled-components'
+import { Button1 } from './UI/Button'
 
 const Navbar = () => {
-  const activeLinkDecider = ({ isActive }) => (isActive ? "active" : "");
+  const activeLinkDecider = ({ isActive }) => (isActive ? 'active' : '')
 
   return (
     <Header>
@@ -12,7 +12,7 @@ const Navbar = () => {
       <nav>
         <Ul>
           <Li>
-            <NavLink to="/posts" className={activeLinkDecider}>
+            <NavLink to='/posts' className={activeLinkDecider}>
               Posts
             </NavLink>
           </Li>
@@ -20,8 +20,8 @@ const Navbar = () => {
         </Ul>
       </nav>
     </Header>
-  );
-};
+  )
+}
 
 const Header = styled.header`
   padding: 1rem;
@@ -33,7 +33,7 @@ const Header = styled.header`
   justify-content: space-between;
   position: sticky;
   top: 0;
-`;
+`
 
 const Ul = styled.ul`
   padding: 1rem;
@@ -42,7 +42,7 @@ const Ul = styled.ul`
   & .active {
     border-bottom: 3px solid gold;
   }
-`;
+`
 
 const Li = styled.li`
   font-size: 1rem;
@@ -54,6 +54,6 @@ const Li = styled.li`
   &:hover {
     border-bottom: 3px solid gold;
   }
-`;
+`
 
-export default memo(Navbar);
+export default memo(Navbar)

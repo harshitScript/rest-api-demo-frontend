@@ -1,8 +1,8 @@
-import PageLayout1 from "../../Layouts/PageLayout1";
-import UpdateStatusForm from "./components/UpdateStatusForm";
-import NewPostModal from "./components/NewPostModal";
-import PostsFeed from "./components/PostsFeed";
-import PostPageCountProvider from "./components/PostsPageCountProvider";
+import PageLayout1 from '../../Layouts/PageLayout1'
+import UpdateStatusForm from './components/UpdateStatusForm'
+import NewPostModal from './components/NewPostModal'
+import PostsFeed from './components/PostsFeed'
+import PostPageCountProvider from './components/PostsPageCountProvider'
 
 const PostsPage = () => {
   return (
@@ -13,7 +13,7 @@ const PostsPage = () => {
         <PostsFeed />
       </PostPageCountProvider>
     </PageLayout1>
-  );
-};
+  )
+}
 
-export default PostsPage;
+export default PostsPage

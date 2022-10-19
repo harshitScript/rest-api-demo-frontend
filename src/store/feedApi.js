@@ -1,21 +1,58 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 const feedApi = createApi({
-  reducerPath: "feeds",
+  reducerPath: 'feeds',
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_BASE_URI,
+    baseUrl: import.meta.env.VITE_BASE_URI
   }),
-  tagTypes: ["posts"],
+  tagTypes: ['posts'],
   endpoints: (builder) => ({
     getPosts: builder.query({
       query: ({ page }) => {
-        return `feed/posts/${page}`;
+        return `feed/posts/${page}`
       },
-      providesTags: ["posts"],
+      providesTags: ['posts']
     }),
-  }),
-});
 
-export const { useGetPostsQuery } = feedApi;
+    createPost: builder.mutation({
+      query: (body) => ({
+        url: 'feed/add-post',
+        method: 'POST',
+        body
+      }),
+      invalidatesTags: ['posts']
+    }),
 
-export default feedApi;
+    editPost: builder.mutation({
+      query: ({ body, id }) => ({
+        url: `feed/edit-post/${id}`,
+        method: 'PUT',
+        body
+      })
+    }),
+
+    getSinglePost: builder.query({
+      query: ({ id }) => {
+        return `/feed/post/${id}`
+      }
+    }),
+
+    deletePost: builder.mutation({
+      query: ({ id }) => ({
+        url: `/feed/delete-post/${id}`,
+        method: 'DELETE'
+      }),
+      invalidatesTags: ['posts']
+    })
+  })
+})
+
+export const {
+  useGetPostsQuery,
+  useCreatePostMutation,
+  useEditPostMutation,
+  useGetSinglePostQuery,
+  useDeletePostMutation
+} = feedApi
+
+export default feedApi

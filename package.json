@@ -10,7 +10,10 @@
     "build": "env-cmd -f ./Environment/.env vite build",
     "build:UAT": "env-cmd -f ./Environment/.env.UAT vite build",
     "build:PROD": "env-cmd -f ./Environment/.env.PROD vite build",
+    "standard" : "npx standard",
+    "standard-fix" : "npx standard --fix",
     "preview": "vite preview"
+
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",

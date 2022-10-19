@@ -1,12 +1,12 @@
-import { configureStore } from "@reduxjs/toolkit";
-import feedApi from "./feedApi";
+import { configureStore } from '@reduxjs/toolkit'
+import feedApi from './feedApi'
 
 const store = configureStore({
   reducer: {
-    [feedApi.reducerPath]: feedApi.reducer,
+    [feedApi.reducerPath]: feedApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(feedApi.middleware),
-});
+    getDefaultMiddleware().concat(feedApi.middleware)
+})
 
-export default store;
+export default store

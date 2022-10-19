@@ -1,27 +1,12 @@
 import PageLayout1 from '../../Layouts/PageLayout1'
 import { useParams } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import api from '../../../api'
-import toast from 'react-hot-toast'
 import styled from 'styled-components'
+import { useGetSinglePostQuery } from '../../store/feedApi'
 
 const ViewPostPage = () => {
   const { id } = useParams()
 
-  const [post, setPost] = useState({})
-
-  useEffect(() => {
-    api
-      .get(`/feed/post/${id}`)
-      .then((res) => {
-        setPost(res.data)
-      })
-      .catch(() => {
-        toast.error('Error Occurred while fetching post.', {
-          position: 'top-center'
-        })
-      })
-  }, [])
+  const { data: post } = useGetSinglePostQuery({ id })
 
   return (
     <PageLayout1>
