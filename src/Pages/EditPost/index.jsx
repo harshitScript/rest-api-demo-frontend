@@ -5,9 +5,10 @@ import { useForm } from "react-hook-form";
 import { useParams, useNavigate } from "react-router-dom";
 import { fileObjectToLocalURL } from "../../utils";
 import { Button2, Button3 } from "../../Components/UI/Button";
-
+import { FaCircleNotch } from "react-icons/fa";
 import { PreviewImg } from "../../Components/UI/previewImage";
 import { useEditPostMutation } from "../../store/feedApi";
+import { InputError1 } from "../../Components/UI/Errors";
 
 const EditPostPage = ({ post }) => {
   const { id } = useParams();
@@ -41,7 +42,6 @@ const EditPostPage = ({ post }) => {
     formData.append("image", image[0]);
 
     triggerEditPost({ body: formData, id }).then((res) => {
-      setLoading(false);
       if (res?.error) {
         toast.error("Error occurred while updating post.", {
           position: "top-center",

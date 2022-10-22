@@ -7,11 +7,7 @@ const Post = ({ title, description, image, _id, createdAt, userId }) => {
     <PostOuter>
       <div className='flex items-center justify-between'>
         <div className='mb-3 flex gap-4'>
-          <UserImage
-            src={userId.userImage}
-            alt='user'
-            className='rounded-full'
-          />
+          <UserImage src={userId.image} alt='user' className='rounded-full' />
           <section>
             <UserName>{userId.username}</UserName>
             <br />
@@ -36,7 +32,6 @@ const PostOuter = styled.article`
   box-shadow: 0 0 0 4px #ffb7;
   width: 80%;
   margin: 1rem auto;
-
 `
 
 const PostTitle = styled.span`

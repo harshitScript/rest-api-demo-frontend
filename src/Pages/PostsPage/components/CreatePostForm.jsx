@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo } from "react";
 import { Button2, Button3 } from "../../../Components/UI/Button";
 import { useForm } from "react-hook-form";
 import { InputError1 } from "../../../Components/UI/Errors";
@@ -7,9 +7,14 @@ import { fileObjectToLocalURL } from "../../../utils";
 import toast from "react-hot-toast";
 import { PreviewImg } from "../../../Components/UI/previewImage";
 import { useCreatePostMutation } from "../../../store/feedApi";
+import useAuth from "../../../hooks/useAuth";
 
 const CreatePostForm = ({ onCancel = () => {} }) => {
   const [triggerCreatePost, { isLoading }] = useCreatePostMutation();
+
+  const { getAuthData, getHeaderAuthTokenString } = useAuth();
+
+  const { userId } = getAuthData();
 
   const {
     register,
@@ -26,14 +31,18 @@ const CreatePostForm = ({ onCancel = () => {} }) => {
   const submitHandler = ({ title, description, image }) => {
     // ? Validated form data here
 
-    setLoading(true);
-
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
     formData.append("image", image[0]);
+    formData.append("userId", userId);
 
-    triggerCreatePost(formData).then((res) => {
+    triggerCreatePost({
+      body: formData,
+      headers: {
+        Authorization: getHeaderAuthTokenString(),
+      },
+    }).then((res) => {
       if (res?.error) {
         toast.error("Error occurred while creating post.", {
           position: "top-center",
@@ -48,6 +57,8 @@ const CreatePostForm = ({ onCancel = () => {} }) => {
             backgroundColor: "#ffb7",
           },
         });
+
+        onCancel();
       }
     });
   };

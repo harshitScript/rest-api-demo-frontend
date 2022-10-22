@@ -1,23 +1,26 @@
-import { useGetPostsQuery } from "../store/feedApi";
+import { useGetPostsQuery } from '../store/feedApi'
+import useAuth from './useAuth'
 const usePosts = ({ page = 1 }) => {
+  const { getHeaderAuthTokenString } = useAuth()
+
   const {
     data,
     isLoading: postsLoading,
     isFetching: postsFetching,
-    error: postsError,
+    error: postsError
   } = useGetPostsQuery({
     page,
     headers: {
-      Authorization: `Bearer ${localStorage?.getItem("authToken")}`,
-    },
-  });
+      Authorization: getHeaderAuthTokenString()
+    }
+  })
 
   return {
     posts: data,
     postsFetching,
     postsLoading,
-    postsError,
-  };
-};
+    postsError
+  }
+}
 
-export default usePosts;
+export default usePosts
