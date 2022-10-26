@@ -23,7 +23,7 @@ const SignInForm = () => {
 
     triggerSignInUser({ body: { email, password } }).then((res) => {
       if (res?.error) {
-        toast.error('Error occurred while signing in up user.', {
+        toast.error('Error occurred while signing in user.', {
           position: 'top-center',
           style: {
             backgroundColor: '#ffb7'

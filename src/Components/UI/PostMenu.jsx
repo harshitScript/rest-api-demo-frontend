@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import { useDeletePostMutation } from '../../store/feedApi'
+import useAuth from '../../hooks/useAuth'
 
 const PostMenu = ({ postId }) => {
   const [showMenu, setShowMenu] = useState(false)
@@ -14,8 +15,15 @@ const PostMenu = ({ postId }) => {
 
   const [triggerDeletePost] = useDeletePostMutation()
 
+  const { getHeaderAuthTokenString } = useAuth()
+
   const deletePost = () => {
-    triggerDeletePost({ id }).then((res) => {
+    triggerDeletePost({
+      id: postId,
+      headers: {
+        Authorization: getHeaderAuthTokenString()
+      }
+    }).then((res) => {
       if (res?.error) {
         toast.error('Post deletion un-successful !', {
           position: 'top-center'

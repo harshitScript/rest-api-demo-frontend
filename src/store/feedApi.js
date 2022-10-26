@@ -40,9 +40,10 @@ const feedApi = createApi({
     }),
 
     deletePost: builder.mutation({
-      query: ({ id }) => ({
+      query: ({ id, headers }) => ({
         url: `/feed/delete-post/${id}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        headers
       }),
       invalidatesTags: ['posts']
     })
