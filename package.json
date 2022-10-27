@@ -10,10 +10,9 @@
     "build": "env-cmd -f ./Environment/.env vite build",
     "build:UAT": "env-cmd -f ./Environment/.env.UAT vite build",
     "build:PROD": "env-cmd -f ./Environment/.env.PROD vite build",
-    "standard" : "npx standard",
-    "standard-fix" : "npx standard --fix",
+    "standard": "npx standard",
+    "standard-fix": "npx standard --fix",
     "preview": "vite preview"
-
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.6",
@@ -26,6 +25,7 @@
     "react-icons": "^4.4.0",
     "react-redux": "^8.0.4",
     "react-router-dom": "^6.4.2",
+    "socket.io-client": "^4.5.3",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

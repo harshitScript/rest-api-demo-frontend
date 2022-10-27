@@ -1,62 +1,67 @@
-import { Card1 } from '../../../Components/UI/Card'
-import { GiAmericanFootballBall } from 'react-icons/gi'
-import styled from 'styled-components'
-import Post from '../../../Components/UI/Post'
-import usePosts from '../../../hooks/usePosts'
-import { NavLink, useParams } from 'react-router-dom'
+import { Card1 } from "../../../Components/UI/Card";
+import { GiAmericanFootballBall } from "react-icons/gi";
+import styled from "styled-components";
+import Post from "../../../Components/UI/Post";
+import usePosts from "../../../hooks/usePosts";
+import { NavLink, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import connectSocket from "socket.io-client";
+import toast from "react-hot-toast";
 
 const PostsFeed = ({ pagesCount }) => {
-  const { page } = useParams()
+  const { page } = useParams();
 
   const { posts, postsFetching, postsLoading } = usePosts({
-    page
-  })
+    page,
+  });
 
-  const isLoading = postsLoading || postsFetching
+  const isLoading = postsLoading || postsFetching;
 
-  return isLoading
-    ? (
-      <Card1 className='w-3/6 mx-auto mt-10 h-40 grid place-items-center'>
-        <GiAmericanFootballBall
-          size={40}
-          color='#ffb7'
-          className='animate-bounce'
-        />
+  useEffect(() => {
+    const socket = connectSocket(import.meta.env.VITE_BASE_URI);
+
+    socket.on("post", (data) => {
+      toast.success("A new post created by a client");
+    });
+  }, []);
+
+  return isLoading ? (
+    <Card1 className="w-3/6 mx-auto mt-10 h-40 grid place-items-center">
+      <GiAmericanFootballBall
+        size={40}
+        color="#ffb7"
+        className="animate-bounce"
+      />
+    </Card1>
+  ) : (
+    <>
+      {pagesCount > 1 ? (
+        <PaginationSection title="pages">
+          {Array(5)
+            .fill("-")
+            .map((e, index) => (
+              <NavLink
+                to={`/posts/${index + 1}`}
+                className={({ active }) => (active ? "color-p" : "")}
+                key={index}
+              >
+                {index + 1}
+              </NavLink>
+            ))}
+        </PaginationSection>
+      ) : (
+        <></>
+      )}
+      <Card1 className="w-3/6 mx-auto mt-10 max-h-100 overflow-y-auto">
+        {posts?.length ? (
+          posts.map((post, index) => <Post key={index} {...post} />)
+        ) : (
+          <p className="text-center">Uh oh no post found.</p>
+        )}
       </Card1>
-      )
-    : (
-      <>
-        {pagesCount > 1
-          ? (
-            <PaginationSection title='pages'>
-              {Array(5)
-                .fill('-')
-                .map((e, index) => (
-                  <NavLink
-                    to={`/posts/${index + 1}`}
-                    className={({ active }) => (active ? 'color-p' : '')}
-                    key={index}
-                  >
-                    {index + 1}
-                  </NavLink>
-                ))}
-            </PaginationSection>
-            )
-          : (
-            <></>
-            )}
-        <Card1 className='w-3/6 mx-auto mt-10 max-h-100 overflow-y-auto'>
-          {posts?.length
-            ? (
-                posts.map((post, index) => <Post key={index} {...post} />)
-              )
-            : (
-              <p className='text-center'>Uh oh no post found.</p>
-              )}
-        </Card1>
-      </>
-      )
-}
+    </>
+  );
+};
 
 const PaginationSection = styled.section`
   width: 30px;
@@ -78,6 +83,6 @@ const PaginationSection = styled.section`
   &:hover {
     transform: translateX(0px);
   }
-`
+`;
 
-export default PostsFeed
+export default PostsFeed;
