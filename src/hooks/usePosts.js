@@ -1,26 +1,28 @@
-import { useGetPostsQuery } from '../store/feedApi'
-import useAuth from './useAuth'
+import { useGetPostsQuery } from "../store/feedApi";
+import useAuth from "./useAuth";
 const usePosts = ({ page = 1 }) => {
-  const { getHeaderAuthTokenString } = useAuth()
+  const { getHeaderAuthTokenString } = useAuth();
 
   const {
     data,
     isLoading: postsLoading,
     isFetching: postsFetching,
-    error: postsError
+    error: postsError,
+    refetch: refetchPosts,
   } = useGetPostsQuery({
     page,
     headers: {
-      Authorization: getHeaderAuthTokenString()
-    }
-  })
+      Authorization: getHeaderAuthTokenString(),
+    },
+  });
 
   return {
     posts: data,
     postsFetching,
     postsLoading,
-    postsError
-  }
-}
+    postsError,
+    refetchPosts,
+  };
+};
 
-export default usePosts
+export default usePosts;

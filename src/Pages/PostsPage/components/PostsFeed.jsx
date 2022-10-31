@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 const PostsFeed = ({ pagesCount }) => {
   const { page } = useParams();
 
-  const { posts, postsFetching, postsLoading } = usePosts({
+  const { posts, postsFetching, postsLoading, refetchPosts } = usePosts({
     page,
   });
 
@@ -20,8 +20,14 @@ const PostsFeed = ({ pagesCount }) => {
   useEffect(() => {
     const socket = connectSocket(import.meta.env.VITE_BASE_URI);
 
-    socket.on("post", (data) => {
+    socket.on("add-post", (data) => {
+      refetchPosts();
       toast.success("A new post created by a client");
+    });
+
+    socket.on("delete-post", (data) => {
+      refetchPosts();
+      toast.success("A  post deleted by a client");
     });
   }, []);
 
