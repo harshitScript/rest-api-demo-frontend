@@ -28,15 +28,24 @@ const useAuth = () => {
   }
 
   const removeAuthData = () => {
-    //* Equivalent to logout.
+    //* Equivalent to soft logout.
     localStorage.removeItem("authToken");
     localStorage.removeItem("expiry");
     localStorage.removeItem("userId");
   };
 
+  const removeAuthDataAndReload = () => {
+    //* Equivalent to hard logout.
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("expiry");
+    localStorage.removeItem("userId");
+    window.location.reload();
+  };
+
   return {
     setAuthData,
     getAuthData,
+    removeAuthDataAndReload,
     removeAuthData,
     isAuthenticated,
     getHeaderAuthTokenString
