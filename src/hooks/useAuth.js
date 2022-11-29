@@ -27,9 +27,17 @@ const useAuth = () => {
     return `Bearer ${localStorage.getItem('authToken')}`
   }
 
+  const removeAuthData = () => {
+    //* Equivalent to logout.
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("expiry");
+    localStorage.removeItem("userId");
+  };
+
   return {
     setAuthData,
     getAuthData,
+    removeAuthData,
     isAuthenticated,
     getHeaderAuthTokenString
   }
