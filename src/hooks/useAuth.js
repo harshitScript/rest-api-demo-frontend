@@ -1,31 +1,40 @@
 const useAuth = () => {
   const setAuthData = ({ expiry, authToken, userId }) => {
-    localStorage.setItem('authToken', authToken)
-    localStorage.setItem('expiry', expiry)
-    localStorage.setItem('userId', userId)
-  }
+    //* Equivalent to soft login.
+    localStorage.setItem("authToken", authToken);
+    localStorage.setItem("expiry", expiry);
+    localStorage.setItem("userId", userId);
+  };
+
+  const setAuthDataAndReload = ({ expiry, authToken, userId }) => {
+    //* Equivalent to hard login.
+    localStorage.setItem("authToken", authToken);
+    localStorage.setItem("expiry", expiry);
+    localStorage.setItem("userId", userId);
+    window.location.reload();
+  };
 
   const getAuthData = () => {
     return {
-      authToken: localStorage.getItem('authToken'),
-      expiry: +localStorage.getItem('expiry'),
-      userId: localStorage.getItem('userId')
-    }
-  }
+      authToken: localStorage.getItem("authToken"),
+      expiry: +localStorage.getItem("expiry"),
+      userId: localStorage.getItem("userId"),
+    };
+  };
 
   const isAuthenticated = () => {
-    const authToken = localStorage.getItem('authToken')
+    const authToken = localStorage.getItem("authToken");
 
-    const expiry = +localStorage?.getItem('expiry')
+    const expiry = +localStorage?.getItem("expiry");
 
-    const currentTime = new Date().getTime()
+    const currentTime = new Date().getTime();
 
-    return authToken && expiry && expiry > currentTime
-  }
+    return authToken && expiry && expiry > currentTime;
+  };
 
   const getHeaderAuthTokenString = () => {
-    return `Bearer ${localStorage.getItem('authToken')}`
-  }
+    return `Bearer ${localStorage.getItem("authToken")}`;
+  };
 
   const removeAuthData = () => {
     //* Equivalent to soft logout.
@@ -48,8 +57,9 @@ const useAuth = () => {
     removeAuthDataAndReload,
     removeAuthData,
     isAuthenticated,
-    getHeaderAuthTokenString
-  }
-}
+    getHeaderAuthTokenString,
+    setAuthDataAndReload,
+  };
+};
 
-export default useAuth
+export default useAuth;
